@@ -10,7 +10,7 @@
     "test": "make test"
   },
   "bin": {
-    "nb": "./bin/cli.js"
+    "nb": "./bin/nb"
   },
   "repository": {
     "type": "git",
