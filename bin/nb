@@ -1,0 +1,45 @@
+#!/usr/bin/env node
+
+/*!
+ * nb - bin/cli.js
+ * Copyright(c) 2012 fengmk2 <fengmk2@gmail.com>
+ * MIT Licensed
+ */
+
+"use strict";
+
+/**
+ * Module dependencies.
+ */
+
+var program = require('commander');
+var fs = require('fs');
+var client = require('../');
+
+program
+  .version(JSON.parse(fs.readFileSync(__dirname + '/../package.json', 'utf8')).version)
+  .usage('[options] [file]')
+  .option('-n, --name <name>', 'file name set for http://nodebox?name=$name');
+
+program.parse(process.argv);
+
+var file = program.args[0];
+
+if (!file) {
+  console.log(program.help());
+  process.exit(-1);
+}
+
+var c = client.create();
+c.send(file, { name: program.name }, function (err, result) {
+  if (err) {
+    throw err;
+  }
+  console.log('%s sent.', file);
+  console.log('------------------------------------------------');
+  var payload = result.payload;
+  console.log('Size: %s\nType: %s\nURL: %s',
+    payload.size, payload.type, payload.url);
+  console.log('------------------------------------------------');
+  process.exit(0);
+});

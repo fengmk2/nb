@@ -1,0 +1,31 @@
+{
+  "name": "nb",
+  "version": "0.0.1",
+  "description": "nodebox cli.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "bin": {
+    "nb": "./bin/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fengmk2/nb.git"
+  },
+  "keywords": [
+    "nodebox",
+    "nfs",
+    "fs",
+    "qiniu"
+  ],
+  "dependencies": {
+    "commander": "1.0.5",
+    "urllib": "0.2.9"
+  },
+  "author": "fengmk2 <fengmk2@gmail.com> (http://fengmk2.github.com)",
+  "license": "MIT"
+}
