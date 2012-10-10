@@ -1,6 +1,6 @@
 {
   "name": "nb",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "nodebox cli.",
   "main": "index.js",
   "directories": {
