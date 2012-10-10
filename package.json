@@ -24,7 +24,7 @@
   ],
   "dependencies": {
     "commander": "1.0.5",
-    "urllib": "0.2.9"
+    "urllib": "0.3.0"
   },
   "author": "fengmk2 <fengmk2@gmail.com> (http://fengmk2.github.com)",
   "license": "MIT"

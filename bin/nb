@@ -19,7 +19,9 @@ var client = require('../');
 program
   .version(JSON.parse(fs.readFileSync(__dirname + '/../package.json', 'utf8')).version)
   .usage('[options] [file]')
-  .option('-n, --name <name>', 'file name set for http://nodebox?name=$name');
+  .option('-n, --name <name>', 'file name set for http://nodebox?name=$name')
+  .option('-u, --user <username>', 'user name')
+  .option('-p, --password <password>', 'password');
 
 program.parse(process.argv);
 
@@ -31,10 +33,20 @@ if (!file) {
 }
 
 var c = client.create();
-c.send(file, { name: program.name }, function (err, result) {
+var params = { name: program.name };
+var auth = null;
+if (program.user) {
+  auth = program.user + ':' + program.password;
+}
+c.send(file, auth, params, function (err, result) {
   if (err) {
     throw err;
   }
+  if (result.error) {
+    console.log('error: %s', result.error);
+    process.exit(-1);
+  }
+
   console.log('%s sent.', file);
   console.log('------------------------------------------------');
   var payload = result.payload;
